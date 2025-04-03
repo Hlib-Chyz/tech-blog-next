@@ -5,7 +5,7 @@ export function middleware(req: NextRequest) {
   if (!req.cookies.get(cookieName)) {
     const acceptLanguage = req.headers.get('accept-language')?.split(',')[0]
     const preferredLocale =
-      acceptLanguage && ['en', 'fr', 'de'].includes(acceptLanguage)
+      acceptLanguage && ['en', 'es'].includes(acceptLanguage)
         ? acceptLanguage
         : 'en'
     const res = NextResponse.next()
