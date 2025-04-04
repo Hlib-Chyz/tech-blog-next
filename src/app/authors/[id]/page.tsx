@@ -1,34 +1,19 @@
-import { Author } from '@/types/Autor'
+'use client'
+
+import { RootState } from '@/lib/store'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import { use } from 'react'
+import { useSelector } from 'react-redux'
 
-const mockAuthors: Author[] = [
-  {
-    id: '1',
-    name: 'John Doe',
-    bio: 'A passionate frontend developer and React enthusiast.',
-    articles: [
-      {
-        title: 'Getting Started with React',
-        slug: 'getting-started-with-react',
-      },
-    ],
-  },
-  {
-    id: '2',
-    name: 'Jane Smith',
-    bio: 'An expert in Next.js and SEO optimization.',
-    articles: [
-      {
-        title: 'Next.js SEO Best Practices',
-        slug: 'nextjs-seo-best-practices',
-      },
-    ],
-  },
-]
-
-export default function AuthorPage({ params }: { params: { id: string } }) {
-  const author = mockAuthors.find((a) => a.id === params.id)
+export default function AuthorPage({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}) {
+  const { id } = use(params)
+  const authors = useSelector((state: RootState) => state.authors)
+  const author = authors.find((a) => a.id === id)
 
   if (!author) {
     notFound()

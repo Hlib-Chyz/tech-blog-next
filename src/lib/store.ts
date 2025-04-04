@@ -1,8 +1,9 @@
+import authorsSlice from '@/lib/features/authorsSlice'
+import postsSlice from '@/lib/features/postsSlice'
 import { configureStore } from '@reduxjs/toolkit'
-import counterReducer from '@/lib/features/counterSlice'
 
 export const store = configureStore({
-  reducer: { counter: counterReducer },
+  reducer: { posts: postsSlice, authors: authorsSlice },
 })
 
 export type RootState = ReturnType<typeof store.getState>

@@ -1,54 +1,38 @@
-import { notFound } from 'next/navigation'
-import { Post } from '@/types/Post'
-import { Metadata } from 'next'
-import Link from 'next/link'
+'use client'
 
-export async function generateMetadata({
+import { RootState } from '@/lib/store'
+import Link from 'next/link'
+import { notFound } from 'next/navigation'
+import { use } from 'react'
+import { useSelector } from 'react-redux'
+
+// export async function generateMetadata({
+//   params,
+// }: {
+//   params: { slug: string }
+// }): Promise<Metadata> {
+//   const post = mockPosts.find((p) => p.slug === params.slug)
+//   if (!post) {
+//     return {
+//       title: 'Post Not Found',
+//       description: 'The post you are looking for does not exist.',
+//     }
+//   }
+
+//   return {
+//     title: `${post.title} | Tech Blog`,
+//     description: post.excerpt,
+//   }
+// }
+
+export default function PostPage({
   params,
 }: {
-  params: { slug: string }
-}): Promise<Metadata> {
-  const post = mockPosts.find((p) => p.slug === params.slug)
-  if (!post) {
-    return {
-      title: 'Post Not Found',
-      description: 'The post you are looking for does not exist.',
-    }
-  }
-
-  return {
-    title: `${post.title} | Tech Blog`,
-    description: post.excerpt,
-  }
-}
-
-const mockPosts: Post[] = [
-  {
-    id: '1',
-    title: 'Getting Started with React',
-    excerpt: 'Learn the basics of React and how to get started.',
-    slug: 'getting-started-with-react',
-    category: 'React',
-    tags: ['JavaScript', 'Frontend'],
-    author: 'John Doe',
-    authorId: '1',
-    date: '2023-04-01',
-  },
-  {
-    id: '2',
-    title: 'Next.js SEO Best Practices',
-    excerpt: 'Optimize your Next.js app for search engines.',
-    slug: 'nextjs-seo-best-practices',
-    category: 'Next.js',
-    tags: ['SEO', 'Web Development'],
-    author: 'Jane Smith',
-    authorId: '2',
-    date: '2023-03-15',
-  },
-]
-
-export default function PostPage({ params }: { params: { slug: string } }) {
-  const post = mockPosts.find((p) => p.slug === params.slug)
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = use(params)
+  const posts = useSelector((state: RootState) => state.posts)
+  const post = posts.find((p) => p.slug === slug)
 
   if (!post) {
     notFound()
