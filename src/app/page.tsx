@@ -26,9 +26,9 @@ export default function Home() {
         </div>
         <div className="mb-4">
           <Card
-            title="Contact"
-            description="Get in touch with us for more information."
-            href="/contact"
+            title="Posts"
+            description="Browse all tech articles on React, Next.js, CSS, and more."
+            href="/posts"
           />
         </div>
       </div>

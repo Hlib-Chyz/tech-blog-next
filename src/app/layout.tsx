@@ -7,10 +7,12 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
-  title: 'My Next.js App',
-  description: 'A sample Next.js application',
+  title: {
+    default: 'Pet Adoption Platform',
+    template: '%s | Pet Adoption Platform',
+  },
+  description: 'Find your perfect pet for adoption.',
 }
-
 export default async function RootLayout({
   children,
 }: {
