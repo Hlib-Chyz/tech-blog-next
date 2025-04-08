@@ -1,8 +1,9 @@
 import { fetchPosts } from '@/lib/features/postsSlice'
 import { store } from '@/lib/store'
 import PostsClient from '@/components/PostsClient'
+import { Metadata } from 'next'
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'All Blog Posts | Tech Blog',
   description: 'Browse all tech articles on React, Next.js, CSS, and more.',
 }

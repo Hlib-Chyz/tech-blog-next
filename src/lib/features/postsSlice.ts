@@ -7,10 +7,23 @@ export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
   return data
 })
 
+export const fetchPostById = createAsyncThunk(
+  'posts/fetchPostById',
+  async (slug: string) => {
+    const response = await fetch(`http://localhost:3000/api/posts/${slug}`)
+    if (!response.ok) {
+      throw new Error(`Failed to fetch post: ${response.statusText}`)
+    }
+    const data: Post = await response.json()
+    return data
+  },
+)
+
 const postsSlice = createSlice({
   name: 'posts',
   initialState: {
     posts: [] as Post[],
+    post: null as Post | null,
     loading: false,
     error: null as string | null,
   },
@@ -28,6 +41,18 @@ const postsSlice = createSlice({
       .addCase(fetchPosts.rejected, (state, action) => {
         state.loading = false
         state.error = action.error.message || 'Failed to fetch posts'
+      })
+      .addCase(fetchPostById.pending, (state) => {
+        state.loading = true
+        state.error = null
+      })
+      .addCase(fetchPostById.fulfilled, (state, action) => {
+        state.loading = false
+        state.post = action.payload
+      })
+      .addCase(fetchPostById.rejected, (state, action) => {
+        state.loading = false
+        state.error = action.error.message || 'Failed to fetch post'
       })
   },
 })

@@ -4,9 +4,7 @@ import { Author } from '@/types/Author'
 export const fetchAuthorById = createAsyncThunk(
   'authors/fetchAuthorById',
   async (id: string) => {
-    console.log(1)
-    const response = await fetch(`/api/authors/${id}`)
-    console.log(3)
+    const response = await fetch(`http://localhost:3000/api/authors/${id}`)
     if (!response.ok) {
       throw new Error(`Failed to fetch author: ${response.statusText}`)
     }

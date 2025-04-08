@@ -8,11 +8,12 @@ import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
   title: {
-    default: 'Pet Adoption Platform',
-    template: '%s | Pet Adoption Platform',
+    default: 'Tech Blog',
+    template: '%s | Tech Blog',
   },
-  description: 'Find your perfect pet for adoption.',
+  description: 'A platform to share and learn about tech articles.',
 }
+
 export default async function RootLayout({
   children,
 }: {

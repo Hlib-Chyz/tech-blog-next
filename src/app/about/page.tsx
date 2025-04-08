@@ -1,4 +1,6 @@
-export const metadata = {
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
   title: 'About Us | Tech Blog',
   description:
     'Learn more about our platform where developers can write and read tech articles on React, Next.js, CSS, and more.',
