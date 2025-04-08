@@ -1,7 +1,10 @@
+import { useTranslations } from 'next-intl'
+
 export default function Footer() {
+  const t = useTranslations()
   return (
     <footer className="bg-gray-800 text-white p-4">
-      <p className="text-center">© 2023 My Next.js App</p>
+      <p className="text-center">{t('footerText')}</p>
     </footer>
   )
 }

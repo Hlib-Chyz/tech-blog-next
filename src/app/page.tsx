@@ -10,24 +10,21 @@ export default function Home() {
         <h1 className="text-4xl font-extrabold text-gray-800 mb-4">
           {t('greeting')}
         </h1>
-        <p className="text-gray-600 mb-6">
-          Welcome to our application! Please select your preferred language
-          below.
-        </p>
+        <p className="text-gray-600 mb-6">{t('welcomeMessage')}</p>
         <div className="mb-4">
           <LanguageSelector />
         </div>
         <div className="mb-4">
           <Card
-            title="About Us"
-            description="Learn more about our mission and values."
+            title={t('aboutUsTitle')}
+            description={t('aboutUsDescription')}
             href="/about"
           />
         </div>
         <div className="mb-4">
           <Card
-            title="Posts"
-            description="Browse all tech articles on React, Next.js, CSS, and more."
+            title={t('postsTitle')}
+            description={t('postsDescription')}
             href="/posts"
           />
         </div>

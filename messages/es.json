@@ -1,3 +1,19 @@
 {
-  "greeting": "¡Hola, bienvenido!"
+  "greeting": "¡Hola, bienvenido!",
+  "welcomeMessage": "¡Bienvenido a nuestra aplicación! Por favor, selecciona tu idioma preferido a continuación.",
+  "aboutUsTitle": "Sobre Nosotros",
+  "aboutUsDescription": "Conoce más sobre nuestra misión y valores.",
+  "postsTitle": "Publicaciones",
+  "postsDescription": "Explora todos los artículos técnicos sobre React, Next.js, CSS y más.",
+  "footerText": "© 2023 Mi Aplicación Next.js",
+  "notFoundTitle": "404",
+  "notFoundMessage": "¡Vaya! La página que buscas no existe.",
+  "notFoundButton": "Volver al Inicio",
+  "filterAllCategories": "Todas las Categorías",
+  "filterAllTags": "Todas las Etiquetas",
+  "authorArticlesTitle": "Artículos",
+  "authorNotFound": "El autor que buscas no existe.",
+  "postNotFound": "La publicación que buscas no existe.",
+  "languageEnglish": "Inglés",
+  "languageSpanish": "Español"
 }
