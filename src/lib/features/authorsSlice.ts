@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { Author } from '@/types/Author'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 export const fetchAuthorById = createAsyncThunk(
   'authors/fetchAuthorById',

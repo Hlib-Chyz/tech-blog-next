@@ -8,7 +8,7 @@ export async function generateMetadata({
   params,
 }: {
   params: { id: string }
-}): Metadata {
+}): Promise<Metadata> {
   const { id } = params
   await store.dispatch(fetchAuthorById(id))
   const { author } = store.getState().authors

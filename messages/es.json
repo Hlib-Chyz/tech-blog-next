@@ -13,7 +13,5 @@
   "filterAllTags": "Todas las Etiquetas",
   "authorArticlesTitle": "Artículos",
   "authorNotFound": "El autor que buscas no existe.",
-  "postNotFound": "La publicación que buscas no existe.",
-  "languageEnglish": "Inglés",
-  "languageSpanish": "Español"
+  "postNotFound": "La publicación que buscas no existe."
 }

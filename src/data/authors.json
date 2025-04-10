@@ -1,60 +1,108 @@
 [
   {
     "id": "1",
-    "name": "John Doe",
-    "bio": "A passionate frontend developer and React enthusiast.",
+    "name": {
+      "en": "John Doe",
+      "es": "Juan Pérez"
+    },
+    "bio": {
+      "en": "A passionate frontend developer and React enthusiast.",
+      "es": "Un apasionado desarrollador frontend y entusiasta de React."
+    },
     "articles": [
       {
-        "title": "Getting Started with React",
+        "title": {
+          "en": "Getting Started with React",
+          "es": "Comenzando con React"
+        },
         "slug": "getting-started-with-react"
       },
       {
-        "title": "Understanding React Hooks",
+        "title": {
+          "en": "Understanding React Hooks",
+          "es": "Entendiendo los Hooks de React"
+        },
         "slug": "understanding-react-hooks"
       }
     ]
   },
   {
     "id": "2",
-    "name": "Jane Smith",
-    "bio": "An expert in Next.js and SEO optimization.",
+    "name": {
+      "en": "Jane Smith",
+      "es": "Juana García"
+    },
+    "bio": {
+      "en": "An expert in Next.js and SEO optimization.",
+      "es": "Una experta en Next.js y optimización SEO."
+    },
     "articles": [
       {
-        "title": "Next.js SEO Best Practices",
+        "title": {
+          "en": "Next.js SEO Best Practices",
+          "es": "Mejores Prácticas de SEO en Next.js"
+        },
         "slug": "nextjs-seo-best-practices"
       },
       {
-        "title": "Building Static Sites with Next.js",
+        "title": {
+          "en": "Building Static Sites with Next.js",
+          "es": "Construyendo Sitios Estáticos con Next.js"
+        },
         "slug": "building-static-sites-with-nextjs"
       }
     ]
   },
   {
     "id": "3",
-    "name": "Alice Johnson",
-    "bio": "A CSS wizard and UI/UX designer.",
+    "name": {
+      "en": "Alice Johnson",
+      "es": "Alicia Johnson"
+    },
+    "bio": {
+      "en": "A CSS wizard and UI/UX designer.",
+      "es": "Una experta en CSS y diseñadora de UI/UX."
+    },
     "articles": [
       {
-        "title": "Mastering CSS Grid",
+        "title": {
+          "en": "Mastering CSS Grid",
+          "es": "Dominando CSS Grid"
+        },
         "slug": "mastering-css-grid"
       },
       {
-        "title": "Responsive Design Principles",
+        "title": {
+          "en": "Responsive Design Principles",
+          "es": "Principios de Diseño Responsivo"
+        },
         "slug": "responsive-design-principles"
       }
     ]
   },
   {
     "id": "4",
-    "name": "Bob Brown",
-    "bio": "A backend developer specializing in Node.js and databases.",
+    "name": {
+      "en": "Bob Brown",
+      "es": "Roberto Marrón"
+    },
+    "bio": {
+      "en": "A backend developer specializing in Node.js and databases.",
+      "es": "Un desarrollador backend especializado en Node.js y bases de datos."
+    },
     "articles": [
       {
-        "title": "Introduction to Node.js",
+        "title": {
+          "en": "Introduction to Node.js",
+          "es": "Introducción a Node.js"
+        },
         "slug": "introduction-to-nodejs"
       },
       {
-        "title": "Database Optimization Techniques",
+        "title": {
+          "en": "Database Optimization Techniques",
+          "es": "Técnicas de Optimización de Bases de Datos"
+        },
         "slug": "database-optimization-techniques"
       }
     ]

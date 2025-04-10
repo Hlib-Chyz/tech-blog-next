@@ -1,15 +1,16 @@
+// TODO
+import { localeCookieName } from '@/constants'
 import { NextRequest, NextResponse } from 'next/server'
 
 export function middleware(req: NextRequest) {
-  const cookieName = 'NEXT_LOCALE'
-  if (!req.cookies.get(cookieName)) {
+  if (!req.cookies.get(localeCookieName)) {
     const acceptLanguage = req.headers.get('accept-language')?.split(',')[0]
     const preferredLocale =
       acceptLanguage && ['en', 'es'].includes(acceptLanguage)
         ? acceptLanguage
         : 'en'
     const res = NextResponse.next()
-    res.cookies.set(cookieName, preferredLocale, { path: '/' })
+    res.cookies.set(localeCookieName, preferredLocale, { path: '/' })
     return res
   }
   return NextResponse.next()
