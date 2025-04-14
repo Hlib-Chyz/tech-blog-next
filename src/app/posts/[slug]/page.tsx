@@ -3,14 +3,16 @@ import PostClient from '@/components/PostClient'
 import { store } from '@/lib/store'
 import { fetchPostById } from '@/lib/features/postsSlice'
 import { Metadata } from 'next'
+import { getLocale } from '@/utils/locale'
 
 export async function generateMetadata({
   params,
 }: {
   params: { slug: string }
-}): Metadata {
+}): Promise<Metadata> {
   const { slug } = params
-  await store.dispatch(fetchPostById(slug))
+  const locale = await getLocale()
+  await store.dispatch(fetchPostById({ slug, locale }))
   const { post } = store.getState().posts
 
   if (!post) {
@@ -32,7 +34,8 @@ export default async function PostPage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  await store.dispatch(fetchPostById(slug))
+  const locale = await getLocale()
+  await store.dispatch(fetchPostById({ slug, locale }))
   const { post } = store.getState().posts
 
   if (!post) {

@@ -3,6 +3,7 @@ import { fetchAuthorById } from '@/lib/features/authorsSlice'
 import { store } from '@/lib/store'
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
+import { getLocale } from '@/utils/locale'
 
 export async function generateMetadata({
   params,
@@ -10,7 +11,8 @@ export async function generateMetadata({
   params: { id: string }
 }): Promise<Metadata> {
   const { id } = params
-  await store.dispatch(fetchAuthorById(id))
+  const locale = await getLocale()
+  await store.dispatch(fetchAuthorById({ id, locale }))
   const { author } = store.getState().authors
 
   if (!author) {
@@ -32,7 +34,8 @@ export default async function AuthorPage({
   params: Promise<{ id: string }>
 }) {
   const { id } = await params
-  await store.dispatch(fetchAuthorById(id))
+  const locale = await getLocale()
+  await store.dispatch(fetchAuthorById({ id, locale }))
   const { author } = store.getState().authors
 
   if (!author) {

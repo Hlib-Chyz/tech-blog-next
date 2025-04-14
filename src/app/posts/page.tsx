@@ -1,6 +1,7 @@
+import PostsClient from '@/components/PostsClient'
 import { fetchPosts } from '@/lib/features/postsSlice'
 import { store } from '@/lib/store'
-import PostsClient from '@/components/PostsClient'
+import { getLocale } from '@/utils/locale'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -9,7 +10,8 @@ export const metadata: Metadata = {
 }
 
 export default async function PostsPage() {
-  await store.dispatch(fetchPosts())
+  const locale = await getLocale()
+  await store.dispatch(fetchPosts(locale))
 
   const { posts } = store.getState().posts
 

@@ -1,18 +1,12 @@
 'use client'
 
-import { useState } from 'react'
+import axios from 'axios'
 
 export default function LanguageSelector() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [_, setSelectedLocale] = useState('en')
-
   const handleLocaleChange = async (locale: string) => {
-    await fetch('http://localhost:3000/api/set-locale', {
-      method: 'POST',
+    await axios.post('api/set-locale', {
       body: JSON.stringify({ locale }),
-      credentials: 'include',
     })
-    setSelectedLocale(locale)
     window.location.reload()
   }
 

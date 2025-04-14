@@ -1,23 +1,53 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import posts from '@/data/posts.json'
+import { Locale } from '@/types/Locale'
 import { Post } from '@/types/Post'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
-export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
-  const response = await fetch('http://localhost:3000/api/posts', {
-    credentials: 'include',
-  })
-  const data: Post[] = await response.json()
-  return data
-})
+export const fetchPosts = createAsyncThunk(
+  'posts/fetchPosts',
+  async (locale: Locale) => {
+    try {
+      const result: Post[] = posts.map((post) => {
+        const localizedPost: Post = {
+          id: post.id,
+          title: post.title[locale],
+          excerpt: post.excerpt[locale],
+          slug: post.slug,
+          category: post.category[locale],
+          tags: post.tags[locale],
+          author: post.author[locale],
+          authorId: post.authorId,
+          date: post.date,
+        }
+        return localizedPost
+      })
+      return result
+    } catch (e) {
+      console.log(e)
+      return []
+    }
+  },
+)
 
 export const fetchPostById = createAsyncThunk(
   'posts/fetchPostById',
-  async (slug: string) => {
-    const response = await fetch(`http://localhost:3000/api/posts/${slug}`)
-    if (!response.ok) {
-      throw new Error(`Failed to fetch post: ${response.statusText}`)
+  async ({ slug, locale }: { slug: string; locale: Locale }) => {
+    const post = posts.find((post) => post.slug === slug)
+    if (!post) {
+      throw new Error('Post not found')
     }
-    const data: Post = await response.json()
-    return data
+    const localizedPost: Post = {
+      id: post.id,
+      title: post.title[locale],
+      excerpt: post.excerpt[locale],
+      slug: post.slug,
+      category: post.category[locale],
+      tags: post.tags[locale],
+      author: post.author[locale],
+      authorId: post.authorId,
+      date: post.date,
+    }
+    return localizedPost
   },
 )
 

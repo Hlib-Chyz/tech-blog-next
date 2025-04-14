@@ -1,15 +1,25 @@
+import authors from '@/data/authors.json'
 import { Author } from '@/types/Author'
+import { Locale } from '@/types/Locale'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 export const fetchAuthorById = createAsyncThunk(
   'authors/fetchAuthorById',
-  async (id: string) => {
-    const response = await fetch(`http://localhost:3000/api/authors/${id}`)
-    if (!response.ok) {
-      throw new Error(`Failed to fetch author: ${response.statusText}`)
+  async ({ id, locale }: { id: string; locale: Locale }) => {
+    const author = authors.find((author) => author.id === id)
+    if (!author) {
+      throw new Error('Author not found')
     }
-    const data: Author = await response.json()
-    return data
+    const localizedAuthor: Author = {
+      id: author.id,
+      name: author.name[locale],
+      bio: author.bio[locale],
+      articles: author.articles.map((article) => ({
+        title: article.title[locale],
+        slug: article.slug,
+      })),
+    }
+    return localizedAuthor
   },
 )
 
