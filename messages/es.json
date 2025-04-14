@@ -3,7 +3,6 @@
   "welcomeMessage": "¡Bienvenido a nuestra aplicación! Por favor, selecciona tu idioma preferido a continuación.",
   "aboutUsTitle": "Sobre Nosotros",
   "aboutUsDescription": "Conoce más sobre nuestra misión y valores.",
-  "postsTitle": "Publicaciones",
   "postsDescription": "Explora todos los artículos técnicos sobre React, Next.js, CSS y más.",
   "footerText": "© 2023 Mi Aplicación Next.js",
   "notFoundTitle": "404",
@@ -13,5 +12,11 @@
   "filterAllTags": "Todas las Etiquetas",
   "authorArticlesTitle": "Artículos",
   "authorNotFound": "El autor que buscas no existe.",
-  "postNotFound": "La publicación que buscas no existe."
+  "postNotFound": "La publicación que buscas no existe.",
+  "myNextJsApp": "Mi Aplicación Next.js",
+  "by": "Por",
+  "on": "el",
+  "category": "Categoría",
+  "tags": "Etiquetas",
+  "postsTitle": "Todas las Publicaciones del Blog"
 }

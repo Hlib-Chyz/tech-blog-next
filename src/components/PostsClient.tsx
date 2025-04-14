@@ -4,6 +4,7 @@ import { useState } from 'react'
 import PostCard from '@/components/PostCard'
 import FilterBar from '@/components/FilterBar'
 import { Post } from '@/types/Post'
+import { useTranslations } from 'next-intl'
 
 export default function PostsClient({
   posts,
@@ -14,6 +15,7 @@ export default function PostsClient({
   categories: string[]
   tags: string[]
 }) {
+  const t = useTranslations()
   const [filteredPosts, setFilteredPosts] = useState(posts)
 
   const handleFilterChange = (filter: { category?: string; tag?: string }) => {
@@ -33,6 +35,7 @@ export default function PostsClient({
 
   return (
     <div>
+      <h1 className="text-2xl font-bold mb-4">{t('postsTitle')}</h1>
       <FilterBar
         categories={categories}
         tags={tags}

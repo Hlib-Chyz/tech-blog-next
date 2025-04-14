@@ -20,7 +20,6 @@ export default async function PostsPage() {
 
   return (
     <div className="p-8">
-      <h1 className="text-2xl font-bold mb-4">All Blog Posts</h1>
       <PostsClient posts={posts} categories={categories} tags={tags} />
     </div>
   )

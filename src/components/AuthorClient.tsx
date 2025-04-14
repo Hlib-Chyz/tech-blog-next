@@ -1,14 +1,19 @@
 'use client'
 
 import { Author } from '@/types/Author'
+import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 
 export default function AuthorClient({ author }: { author: Author }) {
+  const t = useTranslations()
+
   return (
     <div className="p-8">
       <h1 className="text-3xl font-bold mb-4">{author.name}</h1>
       <p className="text-lg text-gray-700 mb-6">{author.bio}</p>
-      <h2 className="text-2xl font-semibold mb-4">Articles</h2>
+      <h2 className="text-2xl font-semibold mb-4">
+        {t('authorArticlesTitle')}
+      </h2>
       <ul className="list-disc list-inside">
         {author.articles.map((article) => (
           <li key={article.slug}>
