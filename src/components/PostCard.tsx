@@ -1,10 +1,9 @@
-import Link from 'next/link'
+import { Langs } from '@/types/Lang'
 import { Post } from '@/types/Post'
-import { useTranslations } from 'next-intl'
+import Link from 'next/link'
+import { dictionary } from '/content'
 
-export default function PostCard({ post }: { post: Post }) {
-  const t = useTranslations()
-
+export default function PostCard({ post, lang }: { post: Post; lang: Langs }) {
   return (
     <div className="border rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow">
       <Link href={`/posts/${post.slug}`}>
@@ -15,10 +14,10 @@ export default function PostCard({ post }: { post: Post }) {
       <p className="text-gray-600 mt-2">{post.excerpt}</p>
       <div className="text-sm text-gray-500 mt-4">
         <span>
-          {t('category')}: {post.category}
+          {dictionary[lang].category}: {post.category}
         </span>
         <span className="ml-4">
-          {t('tags')}: {post.tags.join(', ')}
+          {dictionary[lang].tags}: {post.tags.join(', ')}
         </span>
       </div>
     </div>

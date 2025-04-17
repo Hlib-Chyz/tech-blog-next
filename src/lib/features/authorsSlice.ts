@@ -1,6 +1,6 @@
 import authors from '@/data/authors.json'
 import { Author } from '@/types/Author'
-import { Locale } from '@/types/Locale'
+import { Locale } from '@/types/Lang'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 export const fetchAuthorById = createAsyncThunk(

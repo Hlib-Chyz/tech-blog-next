@@ -1,13 +1,20 @@
 'use client'
 
-import axios from 'axios'
+import { useRouter } from 'next/navigation'
 
 export default function LanguageSelector() {
-  const handleLocaleChange = async (locale: string) => {
-    await axios.post('api/set-locale', {
-      body: JSON.stringify({ locale }),
-    })
-    window.location.reload()
+  const router = useRouter()
+
+  const handleLocaleChange = async (newLocale: string) => {
+    const days = 30
+    const date = new Date()
+    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000)
+    const expires = date.toUTCString()
+    document.cookie = `NEXT_LOCALE=${newLocale};expires=${expires};path=/`
+
+    router.push('/' + newLocale)
+
+    router.refresh()
   }
 
   return (

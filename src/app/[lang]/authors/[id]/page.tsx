@@ -4,6 +4,7 @@ import { store } from '@/lib/store'
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import { getLocale } from '@/utils/locale'
+import { Langs } from '@/types/Lang'
 
 export async function generateMetadata({
   params,
@@ -31,9 +32,9 @@ export async function generateMetadata({
 export default async function AuthorPage({
   params,
 }: {
-  params: Promise<{ id: string }>
+  params: Promise<{ id: string; lang: Langs }>
 }) {
-  const { id } = await params
+  const { id, lang } = await params
   const locale = await getLocale()
   await store.dispatch(fetchAuthorById({ id, locale }))
   const { author } = store.getState().authors
@@ -42,5 +43,5 @@ export default async function AuthorPage({
     notFound()
   }
 
-  return <AuthorClient author={author} />
+  return <AuthorClient lang={lang} author={author} />
 }

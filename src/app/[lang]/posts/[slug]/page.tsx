@@ -4,6 +4,7 @@ import { store } from '@/lib/store'
 import { fetchPostById } from '@/lib/features/postsSlice'
 import { Metadata } from 'next'
 import { getLocale } from '@/utils/locale'
+import { Langs } from '@/types/Lang'
 
 export async function generateMetadata({
   params,
@@ -31,9 +32,9 @@ export async function generateMetadata({
 export default async function PostPage({
   params,
 }: {
-  params: Promise<{ slug: string }>
+  params: Promise<{ slug: string; lang: Langs }>
 }) {
-  const { slug } = await params
+  const { slug, lang } = await params
   const locale = await getLocale()
   await store.dispatch(fetchPostById({ slug, locale }))
   const { post } = store.getState().posts
@@ -42,5 +43,5 @@ export default async function PostPage({
     notFound()
   }
 
-  return <PostClient post={post} />
+  return <PostClient post={post} lang={lang} />
 }

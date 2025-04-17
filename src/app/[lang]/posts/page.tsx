@@ -1,6 +1,7 @@
 import PostsClient from '@/components/PostsClient'
 import { fetchPosts } from '@/lib/features/postsSlice'
 import { store } from '@/lib/store'
+import { Langs } from '@/types/Lang'
 import { getLocale } from '@/utils/locale'
 import { Metadata } from 'next'
 
@@ -9,7 +10,12 @@ export const metadata: Metadata = {
   description: 'Browse all tech articles on React, Next.js, CSS, and more.',
 }
 
-export default async function PostsPage() {
+export default async function PostsPage({
+  params,
+}: {
+  params: Promise<{ lang: Langs }>
+}) {
+  const { lang } = await params
   const locale = await getLocale()
   await store.dispatch(fetchPosts(locale))
 
@@ -20,7 +26,12 @@ export default async function PostsPage() {
 
   return (
     <div className="p-8">
-      <PostsClient posts={posts} categories={categories} tags={tags} />
+      <PostsClient
+        posts={posts}
+        categories={categories}
+        tags={tags}
+        lang={lang}
+      />
     </div>
   )
 }

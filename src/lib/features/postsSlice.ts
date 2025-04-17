@@ -1,5 +1,5 @@
 import posts from '@/data/posts.json'
-import { Locale } from '@/types/Locale'
+import { Locale } from '@/types/Lang'
 import { Post } from '@/types/Post'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
