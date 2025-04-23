@@ -1,7 +1,21 @@
 import Card from '@/components/Card'
 import LanguageSelector from '@/components/LanguageSelector'
-import { dictionary } from '/content'
 import { Langs } from '@/types/Lang'
+import { dictionary } from '/content'
+import { Metadata } from 'next'
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: Langs }>
+}): Promise<Metadata> {
+  const { lang } = await params
+
+  return {
+    title: dictionary[lang].homeTitle,
+    description: dictionary[lang].homeDescription,
+  }
+}
 
 export default async function Home({
   params,
@@ -10,7 +24,7 @@ export default async function Home({
 }) {
   const { lang } = await params
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-6">
+    <div className="flex flex-col items-center justify-center h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-6">
       <div className="bg-white shadow-lg rounded-lg p-8 max-w-lg text-center">
         <h1 className="text-4xl font-extrabold text-gray-800 mb-4">
           {dictionary[lang].greeting}

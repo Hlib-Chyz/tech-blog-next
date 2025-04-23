@@ -1,16 +1,13 @@
 'use client'
 
+import { localeCookieName } from '@/constants'
 import { useRouter } from 'next/navigation'
 
 export default function LanguageSelector() {
   const router = useRouter()
 
   const handleLocaleChange = async (newLocale: string) => {
-    const days = 30
-    const date = new Date()
-    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000)
-    const expires = date.toUTCString()
-    document.cookie = `NEXT_LOCALE=${newLocale};expires=${expires};path=/`
+    document.cookie = `${localeCookieName}=${newLocale}; path=/; max-age=31536000`
 
     router.push('/' + newLocale)
 

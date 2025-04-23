@@ -1,8 +1,8 @@
 import { cookies } from 'next/headers'
-import { Locale } from '@/types/Lang'
+import { Langs } from '@/types/Lang'
 import { localeCookieName } from '@/constants'
 
-export async function getLocale(): Promise<Locale> {
+export async function getLocale(): Promise<Langs> {
   const locale = (await cookies()).get(localeCookieName)?.value || 'en'
-  return locale as Locale
+  return locale as Langs
 }

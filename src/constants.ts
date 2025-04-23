@@ -1,2 +1,1 @@
-// TODO
-export const localeCookieName = 'NEXT_LOCALE'
+export const localeCookieName = 'locale'

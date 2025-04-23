@@ -5,26 +5,27 @@ import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import { getLocale } from '@/utils/locale'
 import { Langs } from '@/types/Lang'
+import { dictionary } from '/content'
 
 export async function generateMetadata({
   params,
 }: {
-  params: { id: string }
+  params: Promise<{ id: string; lang: Langs }>
 }): Promise<Metadata> {
-  const { id } = params
+  const { id, lang } = await params
   const locale = await getLocale()
   await store.dispatch(fetchAuthorById({ id, locale }))
   const { author } = store.getState().authors
 
   if (!author) {
     return {
-      title: 'Author Not Found | Tech Blog',
-      description: 'The author you are looking for does not exist.',
+      title: dictionary[lang].metadataAuthorTitle,
+      description: dictionary[lang].metadataAuthorDescription,
     }
   }
 
   return {
-    title: `${author.name} | Tech Blog`,
+    title: `${author.name} | ${dictionary[lang].techBlog}`,
     description: author.bio,
   }
 }

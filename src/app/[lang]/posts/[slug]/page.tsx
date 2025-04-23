@@ -5,26 +5,27 @@ import { fetchPostById } from '@/lib/features/postsSlice'
 import { Metadata } from 'next'
 import { getLocale } from '@/utils/locale'
 import { Langs } from '@/types/Lang'
+import { dictionary } from '/content'
 
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string }
+  params: Promise<{ slug: string; lang: Langs }>
 }): Promise<Metadata> {
-  const { slug } = params
+  const { slug, lang } = await params
   const locale = await getLocale()
   await store.dispatch(fetchPostById({ slug, locale }))
   const { post } = store.getState().posts
 
   if (!post) {
     return {
-      title: 'Post Not Found | Tech Blog',
-      description: 'The post you are looking for does not exist.',
+      title: dictionary[lang].metadataPostTitle,
+      description: dictionary[lang].metadataPostDescription,
     }
   }
 
   return {
-    title: `${post.title} | Tech Blog`,
+    title: `${post.title} | ${dictionary[lang].techBlog}`,
     description: post.excerpt,
   }
 }

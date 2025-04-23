@@ -1,11 +1,11 @@
 import authors from '@/data/authors.json'
 import { Author } from '@/types/Author'
-import { Locale } from '@/types/Lang'
+import { Langs } from '@/types/Lang'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 export const fetchAuthorById = createAsyncThunk(
   'authors/fetchAuthorById',
-  async ({ id, locale }: { id: string; locale: Locale }) => {
+  async ({ id, locale }: { id: string; locale: Langs }) => {
     const author = authors.find((author) => author.id === id)
     if (!author) {
       throw new Error('Author not found')

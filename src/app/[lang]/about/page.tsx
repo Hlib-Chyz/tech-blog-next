@@ -2,10 +2,16 @@ import { Langs } from '@/types/Lang'
 import { Metadata } from 'next'
 import { dictionary } from '/content'
 
-export const metadata: Metadata = {
-  title: 'About Us | Tech Blog',
-  description:
-    'Learn more about our platform where developers can write and read tech articles on React, Next.js, CSS, and more.',
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: Langs }>
+}): Promise<Metadata> {
+  const { lang } = await params
+  return {
+    title: dictionary[lang].metadataAboutTitle,
+    description: dictionary[lang].metadataAboutDescription,
+  }
 }
 
 export default async function AboutPage({

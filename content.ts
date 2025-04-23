@@ -18,6 +18,18 @@ type DictionaryEntry = {
   category: string
   tags: string
   postsTitle: string
+  techBlog: string
+  metadataAboutTitle: string
+  metadataAboutDescription: string
+  metadataAuthorTitle: string
+  metadataAuthorDescription: string
+  metadataPostTitle: string
+  metadataPostDescription: string
+  metadataPostsTitle: string
+  metadataPostsDescription: string
+  metadataLanguageLayoutDescription: string
+  homeTitle: string
+  homeDescription: string
 }
 
 export const dictionary: Record<Langs, DictionaryEntry> = {
@@ -41,6 +53,20 @@ export const dictionary: Record<Langs, DictionaryEntry> = {
     category: 'Category',
     tags: 'Tags',
     postsTitle: 'All Blog Posts',
+    techBlog: 'Tech Blog',
+    metadataAboutTitle: 'About Us | Tech Blog',
+    metadataAboutDescription: 'Learn more about our mission and values.',
+    metadataAuthorTitle: 'Author Not Found | Tech Blog',
+    metadataAuthorDescription: 'The author you are looking for does not exist.',
+    metadataPostTitle: 'Post Not Found | Tech Blog',
+    metadataPostDescription: 'The post you are looking for does not exist.',
+    metadataPostsTitle: 'Post Not Found | Tech Blog',
+    metadataPostsDescription: 'The post you are looking for does not exist.',
+    metadataLanguageLayoutDescription:
+      'A platform to share and learn about tech articles.',
+    homeTitle: 'Welcome to My App',
+    homeDescription:
+      'Discover amazing features and content tailored just for you.',
   },
   es: {
     greeting: '¡Hola, bienvenido!',
@@ -62,5 +88,19 @@ export const dictionary: Record<Langs, DictionaryEntry> = {
     category: 'Categoría',
     tags: 'Etiquetas',
     postsTitle: 'Todas las Publicaciones del Blog',
+    techBlog: 'Blog de Tecnología',
+    metadataAboutTitle: 'Sobre Nosotros | Blog de Tecnología',
+    metadataAboutDescription: 'Conoce más sobre nuestra misión y valores.',
+    metadataAuthorTitle: 'Autor No Encontrado | Blog de Tecnología',
+    metadataAuthorDescription: 'El autor que buscas no existe.',
+    metadataPostTitle: 'Publicación No Encontrada | Blog de Tecnología',
+    metadataPostDescription: 'La publicación que buscas no existe.',
+    metadataPostsTitle: 'Publicación No Encontrada | Blog de Tecnología',
+    metadataPostsDescription: 'La publicación que buscas no existe.',
+    metadataLanguageLayoutDescription:
+      'Una plataforma para compartir y aprender sobre artículos tecnológicos.',
+    homeTitle: 'Discover amazing features and content tailored just for you.',
+    homeDescription:
+      'Descubre características increíbles y contenido diseñado para ti.',
   },
 }

@@ -1,11 +1,11 @@
 import posts from '@/data/posts.json'
-import { Locale } from '@/types/Lang'
+import { Langs } from '@/types/Lang'
 import { Post } from '@/types/Post'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 export const fetchPosts = createAsyncThunk(
   'posts/fetchPosts',
-  async (locale: Locale) => {
+  async (locale: Langs) => {
     try {
       const result: Post[] = posts.map((post) => {
         const localizedPost: Post = {
@@ -31,7 +31,7 @@ export const fetchPosts = createAsyncThunk(
 
 export const fetchPostById = createAsyncThunk(
   'posts/fetchPostById',
-  async ({ slug, locale }: { slug: string; locale: Locale }) => {
+  async ({ slug, locale }: { slug: string; locale: Langs }) => {
     const post = posts.find((post) => post.slug === slug)
     if (!post) {
       throw new Error('Post not found')

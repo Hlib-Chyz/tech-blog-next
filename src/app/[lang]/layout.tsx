@@ -3,13 +3,32 @@ import { Metadata } from 'next'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { Langs } from '@/types/Lang'
+import { dictionary } from '/content'
 
-export const metadata: Metadata = {
-  title: {
-    default: 'Tech Blog',
-    template: '%s | Tech Blog',
-  },
-  description: 'A platform to share and learn about tech articles.',
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: Langs }>
+}): Promise<Metadata> {
+  const { lang } = await params
+
+  return {
+    title: dictionary[lang].homeTitle,
+    description: dictionary[lang].homeDescription,
+    openGraph: {
+      title: dictionary[lang].homeTitle,
+      description: dictionary[lang].homeDescription,
+      url: `http://localhost:3000/${lang}`,
+      locale: lang === Langs.en ? 'en_US' : 'es_ES',
+    },
+    alternates: {
+      canonical: `http://localhost:3000/${lang}`,
+      languages: {
+        en: 'http://localhost:3000/en',
+        es: 'http://localhost:3000/es',
+      },
+    },
+  }
 }
 
 export default async function RootLayout({

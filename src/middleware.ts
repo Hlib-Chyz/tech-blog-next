@@ -1,33 +1,38 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { localeCookieName } from '@/constants'
+import { Langs } from '@/types/Lang'
 import { match } from '@formatjs/intl-localematcher'
 import Negotiator from 'negotiator'
+import { NextRequest, NextResponse } from 'next/server'
 
-const locales = ['en', 'es']
-export const defaultLocale = 'en'
+const locales = [Langs.en, Langs.es]
+export const defaultLocale = Langs.en
 
-function getLocale(request: Request): string {
-  const headers = new Headers(request.headers)
-  const acceptLanguage = headers.get('accept-language')
-  if (acceptLanguage) {
-    headers.set('accept-language', acceptLanguage.replaceAll('_', '-'))
-  }
+function getLocaleFromCookie(request: NextRequest): string | undefined {
+  return request.cookies.get(localeCookieName)?.value
+}
 
-  const headersObject = Object.fromEntries(headers.entries())
-  const languages = new Negotiator({ headers: headersObject }).languages()
+function getLocaleFromAcceptLanguage(request: NextRequest): string {
+  const acceptLanguage = request.headers.get('accept-language') || ''
+  const negotiator = new Negotiator({
+    headers: { 'accept-language': acceptLanguage },
+  })
+  const languages = negotiator.languages()
   return match(languages, locales, defaultLocale)
 }
 
 export function middleware(request: NextRequest) {
-  console.log(123)
-  const locale = getLocale(request) ?? defaultLocale
   const pathname = request.nextUrl.pathname
+
   const pathnameHasLocale = locales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`,
   )
+  if (pathnameHasLocale) {
+    return
+  }
+  const locale =
+    getLocaleFromCookie(request) || getLocaleFromAcceptLanguage(request)
 
-  if (pathnameHasLocale) return
-
-  const newUrl = new URL(`/${locale}${pathname}`, request.nextUrl)
+  const newUrl = new URL(`/${locale}${pathname}`, request.url)
   return NextResponse.redirect(newUrl)
 }
 
