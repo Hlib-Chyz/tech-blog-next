@@ -24,8 +24,9 @@ export async function generateMetadata({
     alternates: {
       canonical: `http://localhost:3000/${lang}`,
       languages: {
-        en: 'http://localhost:3000/en',
-        es: 'http://localhost:3000/es',
+        [Langs.en]: `http://localhost:3000/${Langs.en}`,
+        [Langs.es]: `http://localhost:3000/${Langs.es}`,
+        'x-default': `http://localhost:3000/${Langs.en}`,
       },
     },
   }

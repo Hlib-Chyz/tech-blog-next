@@ -33,7 +33,7 @@ type DictionaryEntry = {
 }
 
 export const dictionary: Record<Langs, DictionaryEntry> = {
-  en: {
+  [Langs.en]: {
     greeting: 'Hello, welcome!',
     welcomeMessage:
       'Welcome to our application! Please select your preferred language below.',
@@ -68,7 +68,7 @@ export const dictionary: Record<Langs, DictionaryEntry> = {
     homeDescription:
       'Discover amazing features and content tailored just for you.',
   },
-  es: {
+  [Langs.es]: {
     greeting: '¡Hola, bienvenido!',
     welcomeMessage:
       '¡Bienvenido a nuestra aplicación! Por favor, selecciona tu idioma preferido a continuación.',
