@@ -21,12 +21,28 @@ export async function generateMetadata({
     return {
       title: dictionary[lang].metadataAuthorTitle,
       description: dictionary[lang].metadataAuthorDescription,
+      alternates: {
+        canonical: `http://localhost:3000/${lang}/authors/${id}`,
+        languages: {
+          [Langs.en]: `http://localhost:3000/${Langs.en}/authors/${id}`,
+          [Langs.es]: `http://localhost:3000/${Langs.es}/authors/${id}`,
+          'x-default': `http://localhost:3000/${Langs.en}/authors/${id}`,
+        },
+      },
     }
   }
 
   return {
     title: `${author.name} | ${dictionary[lang].techBlog}`,
     description: author.bio,
+    alternates: {
+      canonical: `http://localhost:3000/${lang}/authors/${id}`,
+      languages: {
+        [Langs.en]: `http://localhost:3000/${Langs.en}/authors/${id}`,
+        [Langs.es]: `http://localhost:3000/${Langs.es}/authors/${id}`,
+        'x-default': `http://localhost:3000/${Langs.en}/authors/${id}`,
+      },
+    },
   }
 }
 

@@ -40,9 +40,11 @@ export default async function RootLayout({
   params: Promise<{ lang: Langs }>
 }) {
   const { lang } = await params
+  const dir =
+    (lang as string) === 'ar' || (lang as string) === 'he' ? 'rtl' : 'ltr'
 
   return (
-    <html lang={lang}>
+    <html lang={lang} dir={dir}>
       <body>
         <Providers>
           <Header lang={lang} />

@@ -21,12 +21,28 @@ export async function generateMetadata({
     return {
       title: dictionary[lang].metadataPostTitle,
       description: dictionary[lang].metadataPostDescription,
+      alternates: {
+        canonical: `http://localhost:3000/${lang}/posts/${slug}`,
+        languages: {
+          [Langs.en]: `http://localhost:3000/${Langs.en}/posts/${slug}`,
+          [Langs.es]: `http://localhost:3000/${Langs.es}/posts/${slug}`,
+          'x-default': `http://localhost:3000/${Langs.en}/posts/${slug}`,
+        },
+      },
     }
   }
 
   return {
     title: `${post.title} | ${dictionary[lang].techBlog}`,
     description: post.excerpt,
+    alternates: {
+      canonical: `http://localhost:3000/${lang}/posts/${slug}`,
+      languages: {
+        [Langs.en]: `http://localhost:3000/${Langs.en}/posts/${slug}`,
+        [Langs.es]: `http://localhost:3000/${Langs.es}/posts/${slug}`,
+        'x-default': `http://localhost:3000/${Langs.en}/posts/${slug}`,
+      },
+    },
   }
 }
 

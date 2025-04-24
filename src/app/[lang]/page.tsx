@@ -14,6 +14,14 @@ export async function generateMetadata({
   return {
     title: dictionary[lang].homeTitle,
     description: dictionary[lang].homeDescription,
+    alternates: {
+      canonical: `http://localhost:3000/${lang}`,
+      languages: {
+        [Langs.en]: `http://localhost:3000/${Langs.en}`,
+        [Langs.es]: `http://localhost:3000/${Langs.es}`,
+        'x-default': `http://localhost:3000/${Langs.en}`,
+      },
+    },
   }
 }
 
