@@ -4,7 +4,7 @@ import { match } from '@formatjs/intl-localematcher'
 import Negotiator from 'negotiator'
 import { NextRequest, NextResponse } from 'next/server'
 
-const locales = [Langs.en, Langs.es]
+const locales = Object.values(Langs)
 export const defaultLocale = Langs.en
 
 function getLocaleFromCookie(request: NextRequest): string | undefined {

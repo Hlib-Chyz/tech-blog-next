@@ -6,6 +6,20 @@ import { Metadata } from 'next'
 import { getLocale } from '@/utils/locale'
 import { Langs } from '@/types/Lang'
 import { dictionary } from '/content'
+import authors from '@/data/authors.json'
+
+export async function generateStaticParams() {
+  const locales = Object.values(Langs)
+  const params = []
+
+  for (const locale of locales) {
+    for (const author of authors) {
+      params.push({ lang: locale, id: author.id })
+    }
+  }
+
+  return params
+}
 
 export async function generateMetadata({
   params,

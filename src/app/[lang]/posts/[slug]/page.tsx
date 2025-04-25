@@ -1,11 +1,25 @@
-import { notFound } from 'next/navigation'
 import PostClient from '@/components/PostClient'
-import { store } from '@/lib/store'
+import posts from '@/data/posts.json'
 import { fetchPostById } from '@/lib/features/postsSlice'
-import { Metadata } from 'next'
-import { getLocale } from '@/utils/locale'
+import { store } from '@/lib/store'
 import { Langs } from '@/types/Lang'
+import { getLocale } from '@/utils/locale'
+import { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 import { dictionary } from '/content'
+
+export async function generateStaticParams() {
+  const locales = Object.values(Langs)
+  const params = []
+
+  for (const locale of locales) {
+    for (const post of posts) {
+      params.push({ lang: locale, slug: post.slug })
+    }
+  }
+
+  return params
+}
 
 export async function generateMetadata({
   params,
