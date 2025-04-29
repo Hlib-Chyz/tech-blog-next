@@ -7,6 +7,7 @@ import { getLocale } from '@/utils/locale'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { dictionary } from '/content'
+import { JsonLd } from '@/components/JsonLd'
 
 export async function generateStaticParams() {
   const locales = Object.values(Langs)
@@ -57,6 +58,25 @@ export async function generateMetadata({
         'x-default': `http://localhost:3000/${Langs.en}/posts/${slug}`,
       },
     },
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      url: `https://yourdomain.com/${lang}/posts/${slug}`,
+      images: [
+        {
+          url: post.image,
+          width: 800,
+          height: 600,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt,
+      images: [post.image],
+    },
   }
 }
 
@@ -74,5 +94,31 @@ export default async function PostPage({
     notFound()
   }
 
-  return <PostClient post={post} lang={lang} />
+  const jsonLdData = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.excerpt,
+    image: 'https://yourdomain.com/path-to-image.jpg', // Replace with actual image URL
+    author: {
+      '@type': 'Person',
+      name: post.author,
+    },
+    datePublished: post.date,
+    publisher: {
+      '@type': 'Organization',
+      name: 'My App',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://yourdomain.com/logo.png', // Replace with actual logo URL
+      },
+    },
+  }
+
+  return (
+    <>
+      <JsonLd data={jsonLdData} />
+      <PostClient post={post} lang={lang} />
+    </>
+  )
 }

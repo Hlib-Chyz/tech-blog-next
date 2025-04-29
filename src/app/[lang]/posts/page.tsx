@@ -5,6 +5,7 @@ import { Langs } from '@/types/Lang'
 import { getLocale } from '@/utils/locale'
 import { Metadata } from 'next'
 import { dictionary } from '/content'
+import { JsonLd } from '@/components/JsonLd'
 
 export async function generateMetadata({
   params,
@@ -40,14 +41,30 @@ export default async function PostsPage({
   const categories = Array.from(new Set(posts.map((post) => post.category)))
   const tags = Array.from(new Set(posts.flatMap((post) => post.tags)))
 
+  const jsonLdData = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: dictionary[lang].postsTitle,
+    description: dictionary[lang].postsDescription,
+    url: `https://yourdomain.com/${lang}/posts`,
+    mainEntity: posts.map((post) => ({
+      '@type': 'BlogPosting',
+      headline: post.title,
+      url: `https://yourdomain.com/${lang}/posts/${post.slug}`,
+    })),
+  }
+
   return (
-    <div className="p-8">
-      <PostsClient
-        posts={posts}
-        categories={categories}
-        tags={tags}
-        lang={lang}
-      />
-    </div>
+    <>
+      <JsonLd data={jsonLdData} />
+      <div className="p-8">
+        <PostsClient
+          posts={posts}
+          categories={categories}
+          tags={tags}
+          lang={lang}
+        />
+      </div>
+    </>
   )
 }

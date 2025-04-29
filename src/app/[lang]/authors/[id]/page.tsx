@@ -7,6 +7,7 @@ import { getLocale } from '@/utils/locale'
 import { Langs } from '@/types/Lang'
 import { dictionary } from '/content'
 import authors from '@/data/authors.json'
+import { JsonLd } from '@/components/JsonLd'
 
 export async function generateStaticParams() {
   const locales = Object.values(Langs)
@@ -74,5 +75,26 @@ export default async function AuthorPage({
     notFound()
   }
 
-  return <AuthorClient lang={lang} author={author} />
+  const jsonLdData = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: author.name,
+    description: author.bio,
+    sameAs: [], // Add social media or website links if available
+    worksFor: {
+      '@type': 'Organization',
+      name: 'My App',
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `http://localhost:3000/${lang}/authors/${id}`,
+    },
+  }
+
+  return (
+    <>
+      <JsonLd data={jsonLdData} />
+      <AuthorClient lang={lang} author={author} />
+    </>
+  )
 }

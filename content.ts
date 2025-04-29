@@ -30,6 +30,8 @@ type DictionaryEntry = {
   metadataLanguageLayoutDescription: string
   homeTitle: string
   homeDescription: string
+  organizationName: string
+  organizationDescription: string
 }
 
 export const dictionary: Record<Langs, DictionaryEntry> = {
@@ -67,6 +69,9 @@ export const dictionary: Record<Langs, DictionaryEntry> = {
     homeTitle: 'Welcome to My App',
     homeDescription:
       'Discover amazing features and content tailored just for you.',
+    organizationName: 'Tech Blog Inc.',
+    organizationDescription:
+      'Tech Blog Inc. is a platform dedicated to sharing and learning about the latest in technology.',
   },
   [Langs.es]: {
     greeting: '¡Hola, bienvenido!',
@@ -102,5 +107,8 @@ export const dictionary: Record<Langs, DictionaryEntry> = {
     homeTitle: 'Discover amazing features and content tailored just for you.',
     homeDescription:
       'Descubre características increíbles y contenido diseñado para ti.',
+    organizationName: 'Blog de Tecnología S.A.',
+    organizationDescription:
+      'Blog de Tecnología S.A. es una plataforma dedicada a compartir y aprender sobre lo último en tecnología.',
   },
 }
